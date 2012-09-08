@@ -2,6 +2,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 public class ReadFile {
@@ -24,7 +25,20 @@ public class ReadFile {
 				String sType = elements[1];
 				double sLength = Double.parseDouble(elements[2]);
 				SpeedLimits sl = new SpeedLimits();
-				int speedLimit = sl.getSpeedLimit(sType);
+				int speedLimit = sl.getSpeedLimit(sType,0);
+				System.out.println("Street Name:"+sName+", Street Type:"+sType+", SpeedLimit:"+speedLimit);
+				System.out.println("Any weather change and need to change the speed? Y or N");
+				BufferedReader b = getUserInput();
+				String weatherChange = b.readLine();
+				if(weatherChange.equals("Y"))
+				{
+					System.out.println("Enter the change of speed");
+					BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+					String spchange = sc.readLine();
+					int newSpeed = Integer.parseInt(spchange);
+					speedLimit = sl.getSpeedLimit(sType,newSpeed);
+					
+				}
 				Streets stObj = new Streets();
 				stObj.setsName(sName);
 				stObj.setsLength(sLength);
@@ -34,6 +48,11 @@ public class ReadFile {
 			}
 			buf.close();
 		return hm;
+	}
+	
+	public BufferedReader getUserInput()
+	{
+		return new BufferedReader(new InputStreamReader(System.in));
 	}
 	
 	
