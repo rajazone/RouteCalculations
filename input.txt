@@ -1,0 +1,4 @@
+Norfolk Street,S,0.5
+Hillsdale Bvd,S,0.2
+US 101,H,10.2
+Stanford Rd,S,0.4
